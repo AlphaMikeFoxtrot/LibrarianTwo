@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         mMainActivityItems.add(new MainActivityListViewItem(R.drawable.book_returned, "book returned by subscriber"));
         mMainActivityItems.add(new MainActivityListViewItem(R.drawable.view_all_books, "view books in library"));
         mMainActivityItems.add(new MainActivityListViewItem(R.drawable.view_subscribers_list, "view subscribers list"));
+        mMainActivityItems.add(new MainActivityListViewItem(R.drawable.issued_book_shelf, "view issued books list"));
 
         MainActivityListViewAdapter adapter = new MainActivityListViewAdapter(getApplicationContext(), mMainActivityItems);
         mMainActivityListView.setAdapter(adapter);
@@ -50,10 +51,10 @@ public class MainActivity extends AppCompatActivity {
                         addNewSubscriberItemClicked();
                         break;
 //
-//                    case 2:
-//                        // issue book to subscriber item clicked
-//                        issueBookToSubscriberItemClicked();
-//                        break;
+                    case 2:
+                        // issue book to subscriber item clicked
+                        issueBookToSubscriberItemClicked();
+                        break;
 //
 //                    case 3:
 //                        // return book item clicked
@@ -70,12 +71,21 @@ public class MainActivity extends AppCompatActivity {
                         viewSubscribersListItemClicked();
                         break;
 
+//                    case 6:
+//                        // view issued books list item clicked
+//                        viewIssuedBooksListItemClicked();
+//                        break;
+
                 }
 
             }
         });
 
     }
+
+//    private void viewIssuedBooksListItemClicked() {
+//
+//    }
 
     private void viewSubscribersListItemClicked() {
 
@@ -103,13 +113,14 @@ public class MainActivity extends AppCompatActivity {
 //
 //    }
 //
-//    private void issueBookToSubscriberItemClicked() {
-//
-//        Intent toIssueBook;
-//        toIssueBook.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//        startActivity(toIssueBook);
-//
-//    }
+    private void issueBookToSubscriberItemClicked() {
+
+        Intent toIssueBook;
+        toIssueBook = new Intent(MainActivity.this, IssueBook.class);
+        toIssueBook.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(toIssueBook);
+
+    }
 //
     private void addNewSubscriberItemClicked() {
 

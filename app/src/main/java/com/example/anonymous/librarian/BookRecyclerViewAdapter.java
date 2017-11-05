@@ -53,7 +53,7 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
 
         } else if(Integer.parseInt(currentBook.getmIsBookIssued()) == 1){
 
-            String isIssued = "True";
+            String isIssued = ISSUED + "True";
             holder.bookIsIssued.setText(isIssued);
 
         }

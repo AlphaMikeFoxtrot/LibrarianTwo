@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="10dp"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="10dp"
+        app:contentPadding="4dp"
+        app:cardBackgroundColor="@color/colorAccent">
+
+        <LinearLayout
+            android:padding="2dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:id="@+id/book_name"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                tools:text="Harry Potter and the Half Blood Prince"
+                android:textAllCaps="true"
+                style="@style/TextAppearance.AppCompat.Headline"
+                android:textSize="18sp"
+                android:layout_margin="4dp"
+                android:ellipsize="end"
+                android:lines="2"/>
+
+            <TextView
+                android:textSize="16sp"
+                android:textColor="@android:color/white"
+                android:id="@+id/book_id"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                tools:text="Book Id : SB12"
+                android:layout_margin="4dp"/>
+
+            <TextView
+                android:textSize="16sp"
+                android:textColor="@android:color/white"
+                android:id="@+id/is_book_issued"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                tools:text="Currently Issued : False"
+                android:layout_margin="4dp"/>
+
+            <TextView
+                android:textSize="16sp"
+                android:textColor="@android:color/white"
+                android:id="@+id/book_number_of_copies"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                tools:text="Currently Issued : False"
+                android:layout_margin="4dp"/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

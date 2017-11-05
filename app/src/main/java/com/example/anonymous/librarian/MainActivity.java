@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
@@ -18,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        this.setContentView(R.layout.activity_main);
 
         mMainActivityListView = findViewById(R.id.main_activity_list_view);
 
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                         // add new subscriber item clicked
                         addNewSubscriberItemClicked();
                         break;
-//
+
                     case 2:
                         // issue book to subscriber item clicked
                         issueBookToSubscriberItemClicked();
@@ -65,16 +66,16 @@ public class MainActivity extends AppCompatActivity {
                         // view books item clicked
                         viewBooksInLibraryItemClicked();
                         break;
-//
+
                     case 5:
                         // view subscribers list item clicked
                         viewSubscribersListItemClicked();
                         break;
 
-//                    case 6:
-//                        // view issued books list item clicked
-//                        viewIssuedBooksListItemClicked();
-//                        break;
+                    case 6:
+                        // view issued books list item clicked
+                        viewIssuedBooksListItemClicked();
+                        break;
 
                 }
 
@@ -83,9 +84,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-//    private void viewIssuedBooksListItemClicked() {
-//
-//    }
+    private void viewIssuedBooksListItemClicked() {
+
+        Intent toIssuedBooksList = new Intent(MainActivity.this, ViewIssuedBooksList.class);
+        toIssuedBooksList.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(toIssuedBooksList);
+
+    }
 
     private void viewSubscribersListItemClicked() {
 
@@ -95,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(toSubscribersList);
 
     }
-//
+
     private void viewBooksInLibraryItemClicked() {
 
         Intent toBooksList;
@@ -104,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(toBooksList);
 
     }
-//
+
 //    private void bookReturnedItemClicked() {
 //
 //        Intent toBookReturned;
@@ -112,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
 //        startActivity(toBookReturned);
 //
 //    }
-//
+
     private void issueBookToSubscriberItemClicked() {
 
         Intent toIssueBook;
@@ -121,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(toIssueBook);
 
     }
-//
+
     private void addNewSubscriberItemClicked() {
 
         Intent toNewSubscriber;

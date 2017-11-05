@@ -24,7 +24,7 @@
             <TextView
                 android:textStyle="bold"
                 android:textColor="@android:color/white"
-                android:id="@+id/book_name"
+                android:id="@+id/issued_book_name"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -39,7 +39,7 @@
             <TextView
                 android:textSize="16sp"
                 android:textColor="@android:color/white"
-                android:id="@+id/book_id"
+                android:id="@+id/issued_book_id"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"

@@ -96,7 +96,6 @@ public class AddBookToDatabase extends AppCompatActivity {
             progressDoalog = new ProgressDialog(AddBookToDatabase.this);
             progressDoalog.setMax(100);
             progressDoalog.setMessage("Uploading schematics to database...");
-            progressDoalog.setTitle("Add new book");
             progressDoalog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             progressDoalog.show();
         }

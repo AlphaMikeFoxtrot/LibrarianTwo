@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.anonymous.librarian.IssuedBooksList">
+    tools:context="com.example.anonymous.librarian.ViewIssuedBooksList">
 
     <android.support.v7.widget.SearchView
         android:id="@+id/action_search_issued_books_list"

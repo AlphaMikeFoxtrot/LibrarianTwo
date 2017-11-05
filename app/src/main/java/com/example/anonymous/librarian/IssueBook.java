@@ -88,7 +88,6 @@ public class IssueBook extends AppCompatActivity {
             progressDialog = new ProgressDialog(IssueBook.this);
             progressDialog.setMax(100);
             progressDialog.setMessage("Executing required Operations");
-            progressDialog.setTitle("Issuing Book To User");
             progressDialog.show();
         }
 

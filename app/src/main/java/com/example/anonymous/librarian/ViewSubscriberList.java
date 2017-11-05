@@ -78,7 +78,6 @@ public class ViewSubscriberList extends AppCompatActivity implements SearchView.
         @Override
         protected void onPreExecute() {
             progressDialog.setMax(100);
-            progressDialog.setTitle("Getting Subscribers details");
             progressDialog.setMessage("Patching data received from database.....");
             progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             progressDialog.show();

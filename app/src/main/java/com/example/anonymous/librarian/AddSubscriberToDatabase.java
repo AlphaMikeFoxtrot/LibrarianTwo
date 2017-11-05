@@ -82,7 +82,6 @@ public class AddSubscriberToDatabase extends AppCompatActivity {
             progressDialog = new ProgressDialog(AddSubscriberToDatabase.this);
             progressDialog.setMax(100);
             progressDialog.setMessage("Uploading schematics to database...");
-            progressDialog.setTitle("Add new Subscriber");
             progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             progressDialog.show();
 

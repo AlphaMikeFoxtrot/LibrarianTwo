@@ -84,7 +84,6 @@ public class ViewBookList extends AppCompatActivity implements SearchView.OnQuer
             progressDoalog = new ProgressDialog(ViewBookList.this);
             progressDoalog.setMax(100);
             progressDoalog.setMessage("Patching data received from database...");
-            progressDoalog.setTitle("Getting books list");
             progressDoalog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             progressDoalog.show();
         }

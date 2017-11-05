@@ -45,10 +45,10 @@ public class MainActivity extends AppCompatActivity {
                         addNewBookToLibraryItemClicked();
                         break;
 
-//                    case 1:
-//                        // add new subscriber item clicked
-//                        addNewSubscriberItemClicked();
-//                        break;
+                    case 1:
+                        // add new subscriber item clicked
+                        addNewSubscriberItemClicked();
+                        break;
 //
 //                    case 2:
 //                        // issue book to subscriber item clicked
@@ -65,10 +65,10 @@ public class MainActivity extends AppCompatActivity {
                         viewBooksInLibraryItemClicked();
                         break;
 //
-//                    case 5:
-//                        // view subscribers list item clicked
-//                        viewSubscribersListItemClicked();
-//                        break;
+                    case 5:
+                        // view subscribers list item clicked
+                        viewSubscribersListItemClicked();
+                        break;
 
                 }
 
@@ -77,13 +77,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-//    private void viewSubscribersListItemClicked() {
-//
-//        Intent toSubscribersList;
-//        toSubscribersList.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//        startActivity(toSubscribersList);
-//
-//    }
+    private void viewSubscribersListItemClicked() {
+
+        Intent toSubscribersList;
+        toSubscribersList = new Intent(MainActivity.this, ViewSubscriberList.class);
+        toSubscribersList.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(toSubscribersList);
+
+    }
 //
     private void viewBooksInLibraryItemClicked() {
 
@@ -110,13 +111,14 @@ public class MainActivity extends AppCompatActivity {
 //
 //    }
 //
-//    private void addNewSubscriberItemClicked() {
-//
-//        Intent toNewSubscriber;
-//        toNewSubscriber.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//        startActivity(toNewSubscriber);
-//
-//    }
+    private void addNewSubscriberItemClicked() {
+
+        Intent toNewSubscriber;
+        toNewSubscriber = new Intent(MainActivity.this, AddSubscriberToDatabase.class);
+        toNewSubscriber.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(toNewSubscriber);
+
+    }
 
     private void addNewBookToLibraryItemClicked() {
 

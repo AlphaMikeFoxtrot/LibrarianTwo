@@ -18,15 +18,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".AddBookToDatabase"
-            android:label="Add new book to Library\&apos;s Database"
+            android:label="Add new Book\'s Database"
             android:parentActivityName=".MainActivity" />
+
         <activity
             android:name=".ViewBookList"
             android:label="Library Book List"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".AddSubscriberToDatabase"></activity>
+
+        <activity android:name=".AddSubscriberToDatabase"
+            android:label="Add New Subscriber"
+            android:parentActivityName=".MainActivity"/>
+
+        <activity android:name=".ViewSubscriberList"
+            android:label="View Subscribers"
+            android:parentActivityName=".MainActivity"/>
+
     </application>
 
 </manifest>

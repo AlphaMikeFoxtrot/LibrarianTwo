@@ -8,6 +8,9 @@
     android:orientation="vertical"
     tools:context="com.example.anonymous.librarian.ViewIssuedBooksList">
 
+    <include
+        layout="@layout/view_issued_books_toolbar"/>
+
     <android.support.v7.widget.SearchView
         android:id="@+id/action_search_issued_books_list"
         android:layout_width="match_parent"

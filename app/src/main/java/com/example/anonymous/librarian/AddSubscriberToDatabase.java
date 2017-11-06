@@ -47,11 +47,19 @@ public class AddSubscriberToDatabase extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                InsertNewSubscriberAsyncTask insertNewSubscriberAsyncTask = new InsertNewSubscriberAsyncTask();
-                insertNewSubscriberAsyncTask.execute(mNewSubscriberName.getText().toString(),
-                        mNewSubscriberId.getText().toString(),
-                        mNewSubscriberPhone.getText().toString(),
-                        mNewSubscriberEmail.getText().toString());
+                if(mNewSubscriberEmail.getText().toString().isEmpty() && mNewSubscriberPhone.getText().toString().isEmpty() &&
+                        mNewSubscriberId.getText().toString().isEmpty() && mNewSubscriberName.getText().toString().isEmpty()){
+
+                    // Toast.makeText(AddSubscriberToDatabase.this, "Please make sure that empty fields are filled", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "please make sure there are no empty fields", Toast.LENGTH_LONG).show();
+
+                } else {
+                    InsertNewSubscriberAsyncTask insertNewSubscriberAsyncTask = new InsertNewSubscriberAsyncTask();
+                    insertNewSubscriberAsyncTask.execute(mNewSubscriberName.getText().toString(),
+                            mNewSubscriberId.getText().toString(),
+                            mNewSubscriberPhone.getText().toString(),
+                            mNewSubscriberEmail.getText().toString());
+                }
 
             }
         });
@@ -80,9 +88,7 @@ public class AddSubscriberToDatabase extends AppCompatActivity {
         protected void onPreExecute() {
 
             progressDialog = new ProgressDialog(AddSubscriberToDatabase.this);
-            progressDialog.setMax(100);
             progressDialog.setMessage("Uploading schematics to database...");
-            progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             progressDialog.show();
 
         }
@@ -159,18 +165,20 @@ public class AddSubscriberToDatabase extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
-            if(s.contains("success")){
+
+            if (s.toLowerCase().contains("success")) {
 
                 progressDialog.dismiss();
-                Toast.makeText(AddSubscriberToDatabase.this, "New Subscriber successfully added to Database", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "New subscriber has been successfully registered", Toast.LENGTH_LONG).show();
                 finish();
 
             } else {
 
                 progressDialog.dismiss();
-                Toast.makeText(AddSubscriberToDatabase.this, "Sorry! An error occured: \n" + s, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Sorry something went wrong", Toast.LENGTH_SHORT).show();
 
             }
+
         }
     }
 }

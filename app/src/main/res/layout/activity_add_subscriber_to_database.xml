@@ -6,8 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
     tools:context="com.example.anonymous.librarian.AddSubscriberToDatabase">
+
+    <include
+        layout="@layout/add_subscriber_to_library_toolbar"/>
 
     <EditText
         android:layout_margin="12dp"

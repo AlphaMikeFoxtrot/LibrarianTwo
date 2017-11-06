@@ -40,9 +40,9 @@ public class IssuedBookRecyclerViewAdapter extends RecyclerView.Adapter<IssuedBo
         IssuedBookListItem currentIssuedBookItem = issuedBooks.get(position);
 
         holder.issuedBookName.setText(currentIssuedBookItem.getmIssuedBookName());
-        holder.issuedBooksId.setText(currentIssuedBookItem.getmIssuedBookId());
-        holder.issuedBookToName.setText(currentIssuedBookItem.getmIssuedBookToName());
-        holder.issuedBookOnDate.setText(currentIssuedBookItem.getmIssuedBookOnDate());
+        holder.issuedBooksId.setText(BOOK_ID + currentIssuedBookItem.getmIssuedBookId());
+        holder.issuedBookToName.setText(CURRENTLY_ISSUED_TO + currentIssuedBookItem.getmIssuedBookToName());
+        holder.issuedBookOnDate.setText(ISSUED_ON + currentIssuedBookItem.getmIssuedBookOnDate());
 
     }
 

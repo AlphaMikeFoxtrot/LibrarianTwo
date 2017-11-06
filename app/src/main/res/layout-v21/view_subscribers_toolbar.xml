@@ -14,7 +14,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/library_icon"
+            android:src="@drawable/view_subscribers_list"
             android:scaleType="centerCrop"
             android:layout_marginRight="12dp"
             android:layout_gravity="center"/>
@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:text="@string/app_name"
+            android:text="View subscribers"
             android:textColor="@android:color/white"
             android:fontFamily="sans-serif-smallcaps"
             android:gravity="center"

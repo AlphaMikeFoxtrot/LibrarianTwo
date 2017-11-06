@@ -8,6 +8,9 @@
     android:orientation="vertical"
     tools:context="com.example.anonymous.librarian.ViewSubscriberList">
 
+    <include
+        layout="@layout/view_subscribers_toolbar"/>
+
     <android.support.v7.widget.SearchView
         android:id="@+id/action_search_subscribers_list"
         android:layout_width="match_parent"

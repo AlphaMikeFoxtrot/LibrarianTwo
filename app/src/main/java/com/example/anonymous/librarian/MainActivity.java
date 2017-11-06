@@ -1,13 +1,19 @@
 package com.example.anonymous.librarian;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -32,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         mMainActivityItems.add(new MainActivityListViewItem(R.drawable.view_all_books, "view books in library"));
         mMainActivityItems.add(new MainActivityListViewItem(R.drawable.view_subscribers_list, "view subscribers list"));
         mMainActivityItems.add(new MainActivityListViewItem(R.drawable.issued_book_shelf, "view issued books list"));
+        mMainActivityItems.add(new MainActivityListViewItem(R.drawable.delete, "Delete Book(s) from Database"));
+        mMainActivityItems.add(new MainActivityListViewItem(R.drawable.delete, "Delete Subscriber(s) from Database"));
 
         MainActivityListViewAdapter adapter = new MainActivityListViewAdapter(getApplicationContext(), mMainActivityItems);
         mMainActivityListView.setAdapter(adapter);
@@ -77,6 +85,16 @@ public class MainActivity extends AppCompatActivity {
                         viewIssuedBooksListItemClicked();
                         break;
 
+                    case 7:
+                        // delete books item clicked
+                        deleteBookItemClicked();
+                        break;
+
+                    case 8:
+                        // delete subscribers item clicked
+                        deleteSubscribersItemClicked();
+                        break;
+
                 }
 
             }
@@ -84,29 +102,103 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void deleteSubscribersItemClicked() {
+
+    }
+
+    private void deleteBookItemClicked() {
+
+    }
+
     private void viewIssuedBooksListItemClicked() {
 
-        Intent toIssuedBooksList = new Intent(MainActivity.this, ViewIssuedBooksList.class);
-        toIssuedBooksList.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(toIssuedBooksList);
+        if(isNetworkConnected()) {
+            Intent toIssuedBooksList = new Intent(MainActivity.this, ViewIssuedBooksList.class);
+            toIssuedBooksList.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(toIssuedBooksList);
+        } else {
+
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                    MainActivity.this);
+
+            View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.custom_dialog,null);
+
+            alertDialogBuilder
+                    .setCancelable(false)
+                    .setPositiveButton("Ok",new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog,int id) {
+                            dialog.dismiss();
+                            //MainActivity.this.finish();
+                        }
+                    });
+
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.setView(view);
+            alertDialog.show();
+
+        }
 
     }
 
     private void viewSubscribersListItemClicked() {
 
-        Intent toSubscribersList;
-        toSubscribersList = new Intent(MainActivity.this, ViewSubscriberList.class);
-        toSubscribersList.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(toSubscribersList);
+        if(isNetworkConnected()) {
+            Intent toSubscribersList;
+            toSubscribersList = new Intent(MainActivity.this, ViewSubscriberList.class);
+            toSubscribersList.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(toSubscribersList);
+        } else {
+
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                    MainActivity.this);
+
+            View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.custom_dialog,null);
+
+            alertDialogBuilder
+                    .setCancelable(false)
+                    .setPositiveButton("Ok",new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog,int id) {
+                            dialog.dismiss();
+                            //MainActivity.this.finish();
+                        }
+                    });
+
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.setView(view);
+            alertDialog.show();
+
+        }
 
     }
 
     private void viewBooksInLibraryItemClicked() {
 
-        Intent toBooksList;
-        toBooksList = new Intent(MainActivity.this, ViewBookList.class);
-        toBooksList.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(toBooksList);
+        if(isNetworkConnected()) {
+            Intent toBooksList;
+            toBooksList = new Intent(MainActivity.this, ViewBookList.class);
+            toBooksList.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(toBooksList);
+        } else {
+
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                    MainActivity.this);
+
+            View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.custom_dialog,null);
+
+            alertDialogBuilder
+                    .setCancelable(false)
+                    .setPositiveButton("Ok",new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog,int id) {
+                            dialog.dismiss();
+                            //MainActivity.this.finish();
+                        }
+                    });
+
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.setView(view);
+            alertDialog.show();
+
+        }
 
     }
 
@@ -115,34 +207,132 @@ public class MainActivity extends AppCompatActivity {
 //        Intent toBookReturned;
 //        toBookReturned.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //        startActivity(toBookReturned);
+
+//    if(isNetworkConnected()) {
+//        Intent toIssuedBooksList = new Intent(MainActivity.this, ViewIssuedBooksList.class);
+//        toIssuedBooksList.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        startActivity(toIssuedBooksList);
+//    } else {
+//
+//        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+//                MainActivity.this);
+//
+//        View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.custom_dialog,null);
+//
+//        alertDialogBuilder
+//                .setCancelable(false)
+//                .setPositiveButton("Ok",new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog,int id) {
+//                        dialog.dismiss();
+//                        //MainActivity.this.finish();
+//                    }
+//                });
+//
+//        AlertDialog alertDialog = alertDialogBuilder.create();
+//        alertDialog.setView(view);
+//        alertDialog.show();
+//
+//    }
 //
 //    }
 
     private void issueBookToSubscriberItemClicked() {
 
-        Intent toIssueBook;
-        toIssueBook = new Intent(MainActivity.this, IssueBook.class);
-        toIssueBook.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(toIssueBook);
+        if(isNetworkConnected()) {
+            Intent toIssueBook;
+            toIssueBook = new Intent(MainActivity.this, IssueBook.class);
+            toIssueBook.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(toIssueBook);
+        } else {
+
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                    MainActivity.this);
+
+            View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.custom_dialog,null);
+
+            alertDialogBuilder
+                    .setCancelable(false)
+                    .setPositiveButton("Ok",new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog,int id) {
+                            dialog.dismiss();
+                            //MainActivity.this.finish();
+                        }
+                    });
+
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.setView(view);
+            alertDialog.show();
+
+        }
 
     }
 
     private void addNewSubscriberItemClicked() {
 
-        Intent toNewSubscriber;
-        toNewSubscriber = new Intent(MainActivity.this, AddSubscriberToDatabase.class);
-        toNewSubscriber.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(toNewSubscriber);
+        if(isNetworkConnected()) {
+            Intent toNewSubscriber;
+            toNewSubscriber = new Intent(MainActivity.this, AddSubscriberToDatabase.class);
+            toNewSubscriber.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(toNewSubscriber);
+        } else {
+
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                    MainActivity.this);
+
+            View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.custom_dialog,null);
+
+            alertDialogBuilder
+                    .setCancelable(false)
+                    .setPositiveButton("Ok",new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog,int id) {
+                            dialog.dismiss();
+                            //MainActivity.this.finish();
+                        }
+                    });
+
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.setView(view);
+            alertDialog.show();
+
+        }
 
     }
 
     private void addNewBookToLibraryItemClicked() {
 
-        Intent toNewBook;
-        toNewBook = new Intent(MainActivity.this, AddBookToDatabase.class);
-        toNewBook.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(toNewBook);
+        if(isNetworkConnected()) {
+            Intent toNewBook;
+            toNewBook = new Intent(MainActivity.this, AddBookToDatabase.class);
+            toNewBook.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(toNewBook);
+        } else {
 
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                    MainActivity.this);
+
+            View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.custom_dialog,null);
+
+            alertDialogBuilder
+                    .setCancelable(false)
+                    .setPositiveButton("Ok",new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog,int id) {
+                            dialog.dismiss();
+                            //MainActivity.this.finish();
+                        }
+                    });
+
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.setView(view);
+            alertDialog.show();
+
+        }
+
+    }
+
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null;
     }
 
 }

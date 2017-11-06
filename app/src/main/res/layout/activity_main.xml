@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_two"
     android:orientation="vertical"
     tools:context="com.example.anonymous.librarian.MainActivity">
 
@@ -12,7 +13,6 @@
         layout="@layout/toolbar"/>
 
     <ListView
-        android:layout_marginTop="12dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@android:color/transparent"

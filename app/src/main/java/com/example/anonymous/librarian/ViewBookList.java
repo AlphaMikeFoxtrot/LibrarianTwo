@@ -119,9 +119,7 @@ public class ViewBookList extends AppCompatActivity implements SearchView.OnQuer
 
                 }
 
-                jsonResponseFromServer = responseBuilder.toString();
-
-                return jsonResponseFromServer;
+                return jsonResponseFromServer = responseBuilder.toString();
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();

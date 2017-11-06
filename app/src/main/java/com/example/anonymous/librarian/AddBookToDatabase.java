@@ -1,6 +1,11 @@
 package com.example.anonymous.librarian;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,7 +30,6 @@ public class AddBookToDatabase extends AppCompatActivity {
 
     private EditText mNewBookId, mNewBookName, mNewBookNumberOfCopies;;
     private Button mSubmit, mCancel, mReset;
-    private ProgressDialog progressDoalog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,17 +48,14 @@ public class AddBookToDatabase extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String newBookName = mNewBookName.getText().toString();
-                String newBookId = mNewBookId.getText().toString();
-                String newBookNumberOfCopies = mNewBookNumberOfCopies.getText().toString();
+                if(mNewBookName.getText().toString().isEmpty() && mNewBookId.getText().toString().isEmpty() && mNewBookNumberOfCopies.getText().toString().isEmpty()){
 
-                if(!(newBookId.isEmpty()) && !(newBookName.isEmpty()) && !(newBookNumberOfCopies.isEmpty())){
-
-                    addBookActivitySubmitButtonClicked(newBookId, newBookName, newBookNumberOfCopies);
+                    Toast.makeText(getApplicationContext(), "Please make sure that empty fields are filled!", Toast.LENGTH_SHORT).show();
 
                 } else {
 
-                    Toast.makeText(AddBookToDatabase.this, "Please make sure that empty fields are filled!", Toast.LENGTH_SHORT).show();
+                    InsertBookAsyncTask insertBookAsyncTask = new InsertBookAsyncTask();
+                    insertBookAsyncTask.execute(mNewBookId.getText().toString(), mNewBookName.getText().toString(), mNewBookNumberOfCopies.getText().toString());
 
                 }
 
@@ -81,15 +82,9 @@ public class AddBookToDatabase extends AppCompatActivity {
 
     }
 
-    private void addBookActivitySubmitButtonClicked(String newBoookId, String newBookName, String newBookNumberOfCopies) {
-
-        // TODO : execute async task corresponding to this method
-        InsertBookAsyncTask insertBookAsyncTask = new InsertBookAsyncTask();
-        insertBookAsyncTask.execute(newBoookId, newBookName, newBookNumberOfCopies);
-
-    }
-
     private class InsertBookAsyncTask extends AsyncTask<String, Void, String>{
+
+        ProgressDialog progressDoalog;
 
         @Override
         protected void onPreExecute() {
@@ -168,15 +163,15 @@ public class AddBookToDatabase extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
 
-            if(s.contains("success")){// == "success"){
+            if(s.toLowerCase().contains("success")){// == "success"){
 
-                Toast.makeText(AddBookToDatabase.this, "New book was successfully added to the database", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "New book was successfully added to the database", Toast.LENGTH_SHORT).show();
                 progressDoalog.dismiss();
                 finish();
 
             } else {
 
-                Toast.makeText(AddBookToDatabase.this, "Sorry! An Error occured\n" + s, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Sorry! An Error occured\n" + s, Toast.LENGTH_SHORT).show();
                 progressDoalog.dismiss();
 
             }

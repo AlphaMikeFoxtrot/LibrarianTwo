@@ -28,6 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 tools:text="Harry Potter and the Half Blood Prince"
                 android:textAllCaps="true"
                 style="@style/TextAppearance.AppCompat.Headline"
@@ -42,6 +43,7 @@
                 android:id="@+id/issued_book_id"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:fontFamily="sans-serif-smallcaps"
                 android:layout_weight="1"
                 tools:text="Book Id : SB12"
                 android:layout_margin="4dp"/>
@@ -52,6 +54,7 @@
                 android:id="@+id/currently_issued_to"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:fontFamily="sans-serif-smallcaps"
                 android:layout_weight="1"
                 tools:text="Currently Issued To : Fardeen"
                 android:layout_margin="4dp"/>
@@ -63,6 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 tools:text="Book issued on : 17 Nov 2017 at 19:12"
                 android:layout_margin="4dp"/>
 

@@ -57,7 +57,7 @@ public class IssueBook extends AppCompatActivity {
 
                 } else {
 
-                    Toast.makeText(IssueBook.this, "Please make sure all the empty fields are filled", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Please make sure all the empty fields are filled", Toast.LENGTH_LONG).show();
 
                 }
 
@@ -170,11 +170,11 @@ public class IssueBook extends AppCompatActivity {
         protected void onPostExecute(String s) {
             if(s.contains("success")){
                 progressDialog.dismiss();
-                Toast.makeText(IssueBook.this, "Issued Book entry has been successfully registered", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Issued Book entry has been successfully registered", Toast.LENGTH_LONG).show();
                 finish();
             } else {
                 progressDialog.dismiss();
-                Toast.makeText(IssueBook.this, "Sorry! An error occured\n" + s, Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Sorry! An error occured\n" + s, Toast.LENGTH_LONG).show();
             }
         }
     }

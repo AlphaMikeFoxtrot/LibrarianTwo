@@ -23,6 +23,7 @@
 
             <TextView
                 android:textStyle="bold"
+                android:fontFamily="sans-serif-smallcaps"
                 android:textColor="@android:color/white"
                 android:id="@+id/subscriber_name"
                 android:layout_width="match_parent"
@@ -38,6 +39,7 @@
 
             <TextView
                 android:textSize="16sp"
+                android:fontFamily="sans-serif-smallcaps"
                 android:textColor="@android:color/white"
                 android:id="@+id/subscriber_id"
                 android:layout_width="match_parent"
@@ -53,6 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-smallcaps"
                 tools:text="Phone No. : 8008771837"
                 android:layout_margin="4dp"/>
 
@@ -61,8 +64,10 @@
                 android:textColor="@android:color/white"
                 android:id="@+id/subscriber_email"
                 android:layout_width="match_parent"
+                android:fontFamily="sans-serif-smallcaps"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:textAllCaps="false"
                 tools:text="Email id : panjwanifardeen@gmail.com"
                 android:layout_margin="4dp"/>
 

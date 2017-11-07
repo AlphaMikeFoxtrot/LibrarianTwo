@@ -8,13 +8,21 @@
     android:orientation="vertical"
     tools:context="com.example.anonymous.librarian.ViewSubscriberList">
 
-    <include
-        layout="@layout/view_subscribers_toolbar"/>
-
-    <android.support.v7.widget.SearchView
-        android:id="@+id/action_search_subscribers_list"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"/>
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark" />
+
+    <!--<include-->
+        <!--layout="@layout/view_subscribers_toolbar"/>-->
+
+    <!--<android.support.v7.widget.SearchView-->
+        <!--android:id="@+id/action_search_subscribers_list"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="50dp"/>-->
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/subscribers_list_recycler_view"

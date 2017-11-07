@@ -43,7 +43,8 @@
             android:name=".ViewIssuedBooksList"
             android:label="View Issued Books list"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".BookReturned"></activity>
+        <activity android:name=".BookReturned" />
+        <activity android:name=".ViewBookDetails"></activity>
     </application>
 
 </manifest>

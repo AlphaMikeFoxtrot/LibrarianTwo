@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -24,7 +27,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class ViewIssuedBooksList extends AppCompatActivity implements SearchView.OnQueryTextListener{
+public class ViewIssuedBooksList extends AppCompatActivity{
 
     private RecyclerView mIssuedBookRecyclerView;
     public IssuedBookRecyclerViewAdapter adapter;
@@ -40,34 +43,37 @@ public class ViewIssuedBooksList extends AppCompatActivity implements SearchView
         mIssuedBookRecyclerView.setHasFixedSize(true);
         mIssuedBookRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
-        SearchView searchView = findViewById(R.id.action_search_issued_books_list);
-        searchView.setOnQueryTextListener(this);
+        Toolbar mToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+
+//        SearchView searchView = findViewById(R.id.action_search_issued_books_list);
+//        searchView.setOnQueryTextListener(this);
 
         GetIssuedBooksAsyncTask getIssuedBooksAsyncTask = new GetIssuedBooksAsyncTask();
         getIssuedBooksAsyncTask.execute();
     }
 
-    @Override
-    public boolean onQueryTextSubmit(String query) {
-        return false;
-    }
-
-    @Override
-    public boolean onQueryTextChange(String newText) {
-
-        ArrayList<IssuedBookListItem> newList = new ArrayList<>();
-        for(IssuedBookListItem issuedBookListItem : issuedBooks){
-
-            String bookName = issuedBookListItem.getmIssuedBookName().toLowerCase();
-            if(bookName.contains(newText.toLowerCase())){
-                newList.add(issuedBookListItem);
-            }
-
-        }
-        adapter.setIssuedBookFilter(newList);
-
-        return true;
-    }
+//    @Override
+//    public boolean onQueryTextSubmit(String query) {
+//        return false;
+//    }
+//
+//    @Override
+//    public boolean onQueryTextChange(String newText) {
+//
+//        ArrayList<IssuedBookListItem> newList = new ArrayList<>();
+//        for(IssuedBookListItem issuedBookListItem : issuedBooks){
+//
+//            String bookName = issuedBookListItem.getmIssuedBookName().toLowerCase();
+//            if(bookName.contains(newText.toLowerCase())){
+//                newList.add(issuedBookListItem);
+//            }
+//
+//        }
+//        adapter.setIssuedBookFilter(newList);
+//
+//        return true;
+//    }
 
     public class GetIssuedBooksAsyncTask extends AsyncTask<String, Void, ArrayList<IssuedBookListItem>> {
 
@@ -166,5 +172,39 @@ public class ViewIssuedBooksList extends AppCompatActivity implements SearchView
 
             }
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.search_toolbar, menu);
+        MenuItem menuItem = menu.findItem(R.id.action_search);
+        android.support.v7.widget.SearchView mSearchView = (android.support.v7.widget.SearchView) menuItem.getActionView();
+        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                newText = newText.toLowerCase();
+                ArrayList<IssuedBookListItem> newList = new ArrayList<>();
+                for (IssuedBookListItem issuedBookListItem : issuedBooks) {
+
+                    String bookName = issuedBookListItem.getmIssuedBookName().toLowerCase();
+                    if (bookName.contains(newText.toLowerCase())) {
+                        newList.add(issuedBookListItem);
+                    }
+
+                }
+                adapter.setIssuedBookFilter(newList);
+
+                return true;
+            }
+        });
+
+        return true;
     }
 }

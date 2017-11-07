@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center"
-    android:padding="12dp"
-    android:orientation="horizontal">
+    android:layout_margin="6dp"
+    android:padding="12dp">
 
     <TextView
         android:textColor="@android:color/white"
@@ -17,10 +16,15 @@
         android:textStyle="bold"
         android:textSize="18sp"
         tools:text="View subscribers list"
+        android:layout_margin="12dp"
+        android:layout_toRightOf="@id/button_image"
+        android:layout_centerVertical="true"
+        android:gravity="left"
         android:textAllCaps="true"
         style="@style/TextAppearance.AppCompat.Button"/>
 
     <ImageView
+        android:layout_alignParentLeft="true"
         tools:src="@drawable/ic_action_view_subscribers_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,4 +33,4 @@
         android:layout_margin="12dp"
         android:layout_gravity="center"/>
 
-</LinearLayout>
+</RelativeLayout>

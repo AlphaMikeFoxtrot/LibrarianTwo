@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,7 +27,7 @@ import java.util.ArrayList;
 
 import static com.example.anonymous.librarian.ViewBookList.adapter;
 
-public class ViewSubscriberList extends AppCompatActivity implements SearchView.OnQueryTextListener{
+public class ViewSubscriberList extends AppCompatActivity {
 
     private RecyclerView mSubscribersRecyclerView;
     private ProgressDialog progressDialog;
@@ -41,36 +44,71 @@ public class ViewSubscriberList extends AppCompatActivity implements SearchView.
         mSubscribersRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         progressDialog = new ProgressDialog(this);
 
-        SearchView searchView = findViewById(R.id.action_search_subscribers_list);
-        searchView.setOnQueryTextListener(this);
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
 
         GetSubscriberListAsyncTask getSubscriberListAsyncTask = new GetSubscriberListAsyncTask();
         getSubscriberListAsyncTask.execute();
 
     }
 
-    @Override
-    public boolean onQueryTextSubmit(String query) {
-        return false;
-    }
+//    @Override
+//    public boolean onQueryTextSubmit(String query) {
+//        return false;
+//    }
+//
+//    @Override
+//    public boolean onQueryTextChange(String newText) {
+//
+//        newText = newText.toLowerCase();
+//        ArrayList<SubscribersListItem> newList = new ArrayList<>();
+//        for(SubscribersListItem subscribersListItem : subscribers){
+//
+//            String bookName = subscribersListItem.getmSubName().toLowerCase();
+//            if(bookName.contains(newText)){
+//                newList.add(subscribersListItem);
+//            }
+//
+//        }
+//        adapter.setFilter(newList);
+//
+//        return true;
+//
+//    }
+
 
     @Override
-    public boolean onQueryTextChange(String newText) {
+    public boolean onCreateOptionsMenu(Menu menu) {
 
-        newText = newText.toLowerCase();
-        ArrayList<SubscribersListItem> newList = new ArrayList<>();
-        for(SubscribersListItem subscribersListItem : subscribers){
-
-            String bookName = subscribersListItem.getmSubName().toLowerCase();
-            if(bookName.contains(newText)){
-                newList.add(subscribersListItem);
+        getMenuInflater().inflate(R.menu.search_toolbar, menu);
+        MenuItem menuItem = menu.findItem(R.id.action_search);
+        SearchView mSearchView = (SearchView) menuItem.getActionView();
+        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
             }
 
-        }
-        adapter.setFilter(newList);
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                newText = newText.toLowerCase();
+                ArrayList<SubscribersListItem> newList = new ArrayList<>();
+                for(SubscribersListItem subscribersListItem : subscribers){
+
+                    String bookName = subscribersListItem.getmSubName().toLowerCase();
+                    if(bookName.contains(newText)){
+                        newList.add(subscribersListItem);
+                    }
+
+                }
+                adapter.setFilter(newList);
+
+                return true;
+            }
+        });
 
         return true;
-
     }
 
     private class GetSubscriberListAsyncTask extends AsyncTask<String, Void, String>{

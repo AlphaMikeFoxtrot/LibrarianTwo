@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -67,7 +68,7 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
         return mBooks.size();
     }
 
-    public class BookRecyclerViewHolder extends RecyclerView.ViewHolder{
+    public class BookRecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView bookName, bookId, bookIsIssued, bookNumberOfCopies;
         Context context;
@@ -80,10 +81,20 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
             this.context = context;
             this.books = books;
 
+            itemView.setOnClickListener(this);
+
             bookName = itemView.findViewById(R.id.book_name);
             bookId = itemView.findViewById(R.id.book_id);
             bookIsIssued = itemView.findViewById(R.id.is_book_issued);
             bookNumberOfCopies = itemView.findViewById(R.id.book_number_of_copies);
+        }
+
+        @Override
+        public void onClick(View view) {
+            int position =  getAdapterPosition();
+
+            BookRecyclerViewItem clickedBook = this.books.get(position);
+            Toast.makeText(context, clickedBook.getmBookName() + "\n" + clickedBook.getmBookId() + "\n" + clickedBook.getmIsBookIssued() + "\n" + clickedBook.getmBookNumberOfCopies() + "\n", Toast.LENGTH_LONG).show();
         }
     }
 

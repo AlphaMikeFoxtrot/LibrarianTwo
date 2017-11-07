@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -29,7 +30,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class ViewBookList extends AppCompatActivity implements SearchView.OnQueryTextListener{
+public class ViewBookList extends AppCompatActivity { // implements SearchView.OnQueryTextListener{
 
     private RecyclerView mBooksListRecyclerView;
     public static BookRecyclerViewAdapter adapter;
@@ -42,6 +43,9 @@ public class ViewBookList extends AppCompatActivity implements SearchView.OnQuer
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_view_book_list);
 
+        Toolbar mToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+
         mBooksListRecyclerView = findViewById(R.id.book_list_recycler_view);
         mBooksListRecyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -50,32 +54,33 @@ public class ViewBookList extends AppCompatActivity implements SearchView.OnQuer
         GetBooksFromDbAsyncTask getBooksFromDbAsyncTask = new GetBooksFromDbAsyncTask();
         getBooksFromDbAsyncTask.execute();
 
-        SearchView searchView = findViewById(R.id.action_search);
-        searchView.setOnQueryTextListener(this);
+//        SearchView searchView = findViewById(R.id.action_search);
+//        searchView.setOnQueryTextListener(this);
 
     }
 
-    @Override
-    public boolean onQueryTextSubmit(String s) {
-        return false;
-    }
+//    @Override
+//    public boolean onQueryTextSubmit(String s) {
+//        return false;
+//    }
+//
+//    @Override
+//    public boolean onQueryTextChange(String s) {
+//        String newText = s.toLowerCase();
+//        ArrayList<BookRecyclerViewItem> newList = new ArrayList<>();
+//        for(BookRecyclerViewItem bookRecyclerViewItem : mBooks){
+//
+//            String bookName = bookRecyclerViewItem.getmBookName().toLowerCase();
+//            if(bookName.contains(newText)){
+//                newList.add(bookRecyclerViewItem);
+//            }
+//
+//        }
+//        adapter.setFilter(newList);
+//
+//        return true;
+//    }
 
-    @Override
-    public boolean onQueryTextChange(String s) {
-        String newText = s.toLowerCase();
-        ArrayList<BookRecyclerViewItem> newList = new ArrayList<>();
-        for(BookRecyclerViewItem bookRecyclerViewItem : mBooks){
-
-            String bookName = bookRecyclerViewItem.getmBookName().toLowerCase();
-            if(bookName.contains(newText)){
-                newList.add(bookRecyclerViewItem);
-            }
-
-        }
-        adapter.setFilter(newList);
-
-        return true;
-    }
 
     private class GetBooksFromDbAsyncTask extends AsyncTask<String, Void, String>{
 
@@ -189,5 +194,37 @@ public class ViewBookList extends AppCompatActivity implements SearchView.OnQuer
             return null;
         }
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.search_toolbar, menu);
+        MenuItem menuItem = menu.findItem(R.id.action_search);
+        android.support.v7.widget.SearchView mSearchView = (android.support.v7.widget.SearchView) menuItem.getActionView();
+        mSearchView.setOnQueryTextListener(new android.support.v7.widget.SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                newText = newText.toLowerCase();
+                ArrayList<BookRecyclerViewItem> newList = new ArrayList<>();
+                for(BookRecyclerViewItem bookRecyclerViewItem : mBooks){
+
+                    String bookName = bookRecyclerViewItem.getmBookName().toLowerCase();
+                    if(bookName.contains(newText)){
+                        newList.add(bookRecyclerViewItem);
+                    }
+
+                }
+                adapter.setFilter(newList);
+
+                return true;
+            }
+        });
+        return true;
     }
 }
